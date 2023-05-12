@@ -27,9 +27,16 @@ const router = createRouter({
       path: "/city",
       component: () => import("@/views/city/city.vue"),
       ////隐藏tabbar-方案一
-      // meta: {
-      //   hideTabber: true,
-      // },
+      meta: {
+        hideTabber: true,
+      },
+    },
+    {
+      path: "/search",
+      component: () => import("@/views/search/search.vue"),
+      meta: {
+        hideTabber: true,
+      },
     },
   ],
 });

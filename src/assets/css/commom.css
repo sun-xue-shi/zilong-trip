@@ -1,17 +1,22 @@
 :root {
   --primary-color: #ff9854;
   --van-search-left-icon-color: var(--primary-color) !important;
+  --line-color: #f8f8f8;
+  --theme-linear-gradient: linear-gradient(90deg, #fa8c1d, #fcaf3f);
 }
 
 body {
   font-size: 14px;
 }
 
+.border-gray-line {
+  border-bottom: 1px solid var(--line-color);
+}
 /* 隐藏tabbar-方案二 */
-.top-page {
+/* .top-page {
   position: relative;
   z-index: 9;
   height: 100vh;
   background-color: #fff;
   overflow-y: auto;
-}
+} */
