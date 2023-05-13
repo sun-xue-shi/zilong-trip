@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from "node:url";
-
+import UnoCSS from "unocss/vite";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite";
@@ -11,6 +11,10 @@ export default defineConfig({
     vue(),
     Components({
       resolvers: [VantResolver()],
+    }),
+    UnoCSS({
+      // rules: [["pink", { backgroundimage: "pink" }]],
+      // shortcuts: {},
     }),
   ],
   resolve: {

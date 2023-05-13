@@ -6,7 +6,9 @@
     </div>
     <search-box />
     <categories />
-    <div class="search-bar" v-if="showSearchBar">666</div>
+    <div class="search-bar" v-if="showSearchBar">
+      <search-bar />
+    </div>
     <hot-content />
   </div>
 </template>
@@ -19,6 +21,7 @@ import useHomeStore from "@/stores/modules/home";
 import categories from "./cpns/categories.vue";
 import hotContent from "./cpns/hot-content.vue";
 import useScroll from "@/hooks/useScroll";
+import searchBar from "../../components/search-bar/search-bar.vue";
 
 const homeStore = useHomeStore();
 homeStore.getHotSuggestData();
@@ -35,13 +38,9 @@ watch(isreachBottom, (newValue) => {
   }
 });
 
-// const showSearchBar = ref(false);
-// watch(scrollTop, (newTop) => {
-//   showSearchBar.value = newTop > 100;
-// });
-
+//若定义的可响应式数据依赖另一个响应式数据，则可以使用计算属性（computed）
 const showSearchBar = computed(() => {
-  return scrollTop.value >= 100;
+  return scrollTop.value >= 350;
 });
 </script>
 
@@ -51,5 +50,16 @@ const showSearchBar = computed(() => {
     width: 100%;
     border-top: 1px solid #000;
   }
+}
+
+.search-bar {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 45px;
+  padding: 16px 16px 10px;
+  background-color: #fff;
+  z-index: 1;
 }
 </style>

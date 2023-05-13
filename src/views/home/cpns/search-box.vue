@@ -63,9 +63,10 @@
 import useCityStore from "@/stores/modules/city";
 import useHomeStore from "@/stores/modules/home";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import { formatDate, getStayDays } from "@/utils/day";
+import useMainStore from "@/stores/modules/main";
 const router = useRouter();
 
 const cityClick = () => {
@@ -116,22 +117,21 @@ const searchClick = () => {
 };
 
 //日期范围处理
-//得到当天和第二天时间（默认当天入住，第二天离开）
-const today = new Date();
-const tomorrow = new Date().setDate(today.getDate() + 1);
+const mainStore = useMainStore();
+const { today, tomorrow } = storeToRefs(mainStore);
 //利用day.js处理后得到开始/结束日期（x月x日）
-const startDate = ref(formatDate(today));
-const endDate = ref(formatDate(tomorrow));
+const startDate = computed(() => formatDate(today.value));
+const endDate = computed(() => formatDate(tomorrow.value));
 //利用day.js处理得到入住时间
-const stayDays = ref(getStayDays(tomorrow, today));
+const stayDays = ref(getStayDays(tomorrow.value, today.value));
 
 const showCalendar = ref(false);
 
 //点击日历中确定按钮
 const onConfirm = (value) => {
   //将选中日期信息传回首页对应位置
-  startDate.value = formatDate(value[0]);
-  endDate.value = formatDate(value[1]);
+  mainStore.today = value[0];
+  mainStore.tomorrow = value[1];
   stayDays.value = getStayDays(value[1], value[0]);
   //点击确定关闭日历
   showCalendar.value = false;
@@ -249,7 +249,7 @@ const onConfirm = (value) => {
   .btn {
     width: 342px;
     height: 38px;
-    //max-height: 50px;
+    max-height: 50px;
     font-size: 18px;
     font-weight: 500;
     text-align: center;

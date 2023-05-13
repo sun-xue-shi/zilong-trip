@@ -22,9 +22,18 @@
 <script setup>
 import tabbarData from "@/assets/data/tabbar";
 import { getURL } from "@/utils/get_assets";
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const currentIndex = ref(0);
+
+//监听路由改变，找到对应索引，设置currentIndex
+watch(route, (newRoute) => {
+  const index = tabbarData.findIndex((item) => item.path === newRoute.path);
+  if (index === -1) return; //找不到时不给currentIndex设置index
+  currentIndex.value = index;
+});
 </script>
 
 <style lang="less" scoped>

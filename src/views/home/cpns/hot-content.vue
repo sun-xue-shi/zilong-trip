@@ -21,8 +21,8 @@
 <script setup>
 import useHomeStore from "@/stores/modules/home";
 import { storeToRefs } from "pinia";
-import houseItemV3Vue from "../../../components/house-item-v3/house-item-v3.vue";
-import houseItemV9Vue from "../../../components/house-item-v9/house-item-v9.vue";
+import houseItemV3 from "../../../components/house-item-v3/house-item-v3.vue";
+import houseItemV9 from "../../../components/house-item-v9/house-item-v9.vue";
 
 const homeStore = useHomeStore();
 const { houseList } = storeToRefs(homeStore);
