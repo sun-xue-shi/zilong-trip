@@ -1,6 +1,10 @@
 <template>
-  <div class="loading" v-if="isLoading" @click="loadingClick">
-    <div class="bg w-26 h-26">
+  <div
+    class="loading fixed z-5 inset-0 flex justify-center items-center"
+    v-if="isLoading"
+    @click="loadingClick"
+  >
+    <div class="bg w-26 h-26 justify-center flex items-center">
       <img
         src="@/assets/images/home/full-screen-loading.gif"
         alt=""
@@ -25,22 +29,21 @@ const loadingClick = () => {
 
 <style lang="less" scoped>
 .loading {
-  position: fixed;
-  z-index: 5;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.1);
+  // position: fixed;
+  // z-index: 5;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
 
   .bg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     background: url(@/assets/images/home/loading-bg.png) 0 0 / 100% 100%;
   }
 }
