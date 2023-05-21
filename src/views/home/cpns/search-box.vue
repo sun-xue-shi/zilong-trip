@@ -9,6 +9,7 @@
       </div>
     </div>
     <!-- 入住时间范围 -->
+    <!-- 点击打开日历 -->
     <div class="section date-range" @click="showCalendar = true">
       <div class="start">
         <div class="date">
@@ -125,11 +126,12 @@ const endDate = computed(() => formatDate(tomorrow.value));
 //利用day.js处理得到入住时间
 const stayDays = ref(getStayDays(tomorrow.value, today.value));
 
+//默认不显示日历
 const showCalendar = ref(false);
 
 //点击日历中确定按钮
 const onConfirm = (value) => {
-  //将选中日期信息传回首页对应位置
+  //将选中日期信息在store中修改,便于传回其他对应位置
   mainStore.today = value[0];
   mainStore.tomorrow = value[1];
   stayDays.value = getStayDays(value[1], value[0]);

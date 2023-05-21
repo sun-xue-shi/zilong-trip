@@ -22,7 +22,8 @@ const useHomeStore = defineStore("home", {
     },
     async getHouseListData() {
       const res = await getHouseList(this.currentPage);
-      this.houseList.push(...res.data.data);
+      this.houseList.push(...res.data.data); //将获取到的数组拍平?
+      //请求一次获取数据页加1
       this.currentPage++;
     },
   },

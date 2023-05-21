@@ -22,6 +22,7 @@ import { storeToRefs } from "pinia";
 const mainStore = useMainStore();
 const { isLoading } = storeToRefs(mainStore);
 
+//加载时点击则不显示loading图
 const loadingClick = () => {
   isLoading.value = false;
 };

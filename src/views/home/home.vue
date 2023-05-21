@@ -29,9 +29,10 @@ homeStore.getCategoryData();
 homeStore.getHouseListData();
 
 const { isreachBottom, scrollTop } = useScroll();
+//监听isreachBottom,变化即到达底部,执行回调操作
 watch(isreachBottom, (newValue) => {
   if (newValue) {
-    //异步操作：获取到数据后重新改为false
+    //异步操作：发送请求,获取到数据后重新改isreachBottom为false
     homeStore.getHouseListData().then(() => {
       isreachBottom.value = false;
     });
@@ -39,6 +40,7 @@ watch(isreachBottom, (newValue) => {
 });
 
 //若定义的可响应式数据依赖另一个响应式数据，则可以使用计算属性（computed）
+//滑过的高度大于350时显示SearchBar
 const showSearchBar = computed(() => {
   return scrollTop.value >= 350;
 });

@@ -24,7 +24,7 @@ import useCityStore from "@/stores/modules/city";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 
-// 接收city-group传递过来的groupData所绑定数据
+// 接收city.vue传递过来的groupData所绑定的数据
 const props = defineProps({
   groupData: {
     type: Object,
@@ -32,18 +32,20 @@ const props = defineProps({
   },
 });
 
-//动态索引 -> 根据数据中group来显示索引（可去掉v）
+//动态索引 -> 根据数据中group来显示索引（可去掉v字母）
 const indexList = computed(() => {
+  //得到数据中对应group的字母
   const list = props.groupData.cities.map((item) => item.group);
-  list.unshift("#"); //#对应“热门”
+  //列表前加上#对应“热门”
+  list.unshift("#");
   return list;
 });
 
 const router = useRouter();
 const cityStore = useCityStore();
 const cityClick = (city) => {
-  cityStore.currentCity = city; //获取点击的城市名，以便传到首页显示
-  router.back(); //返回上一级
+  cityStore.currentCity = city; //获取点击的城市名，传到首页显示
+  router.back(); //返回上一级,即首页,router.push("/home")
 };
 </script>
 

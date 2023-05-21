@@ -30,12 +30,11 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import cityGroup from "./cpns/city-group.vue";
 import useCityStore from "@/stores/modules/city";
 import { storeToRefs } from "pinia";
-import { getAllCity } from "@/service";
 
 const tabActive = ref();
 const searchValue = ref("");
@@ -45,19 +44,10 @@ const cancelClick = () => {
   router.push("/home");
 };
 
-//请求城市数据
-// const allCity = ref({});
-// getAllCity().then((res) => {
-//   allCity.value = res.data.data;
-// });
 //获取所有城市数据
 const cityStore = useCityStore();
 cityStore.allCitysData();
 const { allCitys } = storeToRefs(cityStore);
-
-//获取当前选中tab栏的数据
-//思路：通过tabAction获取key，利用key从allCity获取数据（默认非响应式，因此包上computed）
-// const currentGroup = computed(() => allCity.value[tabActive.value]);
 </script>
 
 <style lang="less" scoped>

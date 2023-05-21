@@ -33,6 +33,7 @@ const prpos = defineProps({
   },
 });
 
+//精确到小数点显示星星评分
 const itemScore = computed(() => {
   return Number(prpos.itemData.commentScore);
 });

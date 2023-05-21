@@ -6,7 +6,7 @@ export default function useScroll() {
   const scrollTop = ref(0);
   const clientHeight = ref(0);
   const scrollHeight = ref(0);
-  //节流处理
+  //throttle节流处理
   const scrollListener = throttle(() => {
     //滑过的高度
     scrollTop.value = document.documentElement.scrollTop;
@@ -17,6 +17,7 @@ export default function useScroll() {
     // console.log(scrollTop, clientHeight, scrollHeight);
     //????????
     if (scrollTop.value + clientHeight.value >= scrollHeight.value - 1) {
+      //滑过的高度 + 当前屏幕高度 = 总高度  时设置触底
       isreachBottom.value = true;
     }
   }, 100);
