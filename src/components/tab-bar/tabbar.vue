@@ -6,11 +6,13 @@
         <van-tabbar-item :to="item.path">
           <span>{{ item.text }}</span>
           <template #icon>
+            <!-- 当前未选中标签显示普通图标 -->
             <img
               v-if="currentIndex !== index"
               :src="getURL(item.image)"
               alt=""
             />
+            <!-- 当前未选中标签显示活跃图标 -->
             <img v-else :src="getURL(item.imageActive)" alt="" />
           </template>
         </van-tabbar-item>
@@ -25,13 +27,15 @@ import { getURL } from "@/utils/get_assets";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
-const route = useRoute();
 const currentIndex = ref(0);
 
 //监听路由改变，找到对应索引，设置currentIndex
+const route = useRoute();
 watch(route, (newRoute) => {
+  //得到tabbarData中满足与当前监听到新路径相同的数组索引
   const index = tabbarData.findIndex((item) => item.path === newRoute.path);
-  if (index === -1) return; //找不到时不给currentIndex设置index
+  if (index === -1) return; //找不到时返回-1-->不给currentIndex设置index
+  //将当前的currentIndex设置为tabbarData数组的index索引
   currentIndex.value = index;
 });
 </script>
