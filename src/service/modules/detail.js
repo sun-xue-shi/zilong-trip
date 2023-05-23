@@ -1,6 +1,6 @@
 import myRequest from "../request";
 
-export function getAllCity(houseId) {
+export function getDetailInfos(houseId) {
   return myRequest.get({
     url: "/detail/infos",
     params: {
