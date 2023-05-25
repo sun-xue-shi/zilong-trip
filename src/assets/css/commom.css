@@ -3,7 +3,7 @@
   --van-search-left-icon-color: var(--primary-color) !important;
   --line-color: #f8f8f8;
   --theme-linear-gradient: linear-gradient(90deg, #fa8c1d, #fcaf3f);
-  --van-primary-color: var(--primary-color);
+  --van-primary-color: var(--primary-color) !important;
 }
 
 body {

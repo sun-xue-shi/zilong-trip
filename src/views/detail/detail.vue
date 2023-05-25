@@ -8,7 +8,11 @@
     />
   </div>
   <div class="main" v-if="mainPart">
-    <detail-swiper :swiper-data="mainPart.topModule.housePicture.housePics" />
+    <detail-swiper :swiper-data="mainPart?.topModule.housePicture.housePics" />
+    <detail-info :top-infos="mainPart?.topModule" />
+    <div class="facility">
+      <detail-section title="房屋设施" more-text="查看全部设施" />
+    </div>
   </div>
 </template>
 
@@ -16,7 +20,9 @@
 import { useRoute, useRouter } from "vue-router";
 import { getDetailInfos } from "@/service";
 import { computed, ref } from "vue";
-import detailSwiper from "./cpns/detail-swiper.vue";
+import detailSwiper from "./cpns/detail-swiper_01.vue";
+import detailInfo from "./cpns/deatil-infos_02.vue";
+import detailSection from "@/components/detail-section/detail-section.vue";
 
 const route = useRoute();
 const router = useRouter();

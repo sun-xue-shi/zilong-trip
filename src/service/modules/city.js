@@ -1,10 +1,7 @@
 import myRequest from "../request";
 
-export function getAllCity(houseId) {
+export function getAllCity() {
   return myRequest.get({
-    url: "/detail/infos",
-    params: {
-      houseId,
-    },
+    url: "/city/all",
   });
 }
