@@ -3,8 +3,12 @@
     <div class="header">
       <h2 class="title">{{ title }}</h2>
     </div>
-    <div class="content"></div>
-    <div class="footer">
+    <div class="content">
+      <slot>
+        <h3>我是默认内容</h3>
+      </slot>
+    </div>
+    <div class="footer" v-if="moreText.length">
       <span class="more">{{ moreText }}</span>
       <van-icon name="arrow" color="#ff9854" />
     </div>
@@ -33,7 +37,7 @@ defineProps({
   border-top: 5px solid #f5f7fa;
 
   .header {
-    padding-bottom: 15px;
+    // padding-bottom: 5px;
     border-bottom: 1px solid #f5f7fa;
   }
   .content {

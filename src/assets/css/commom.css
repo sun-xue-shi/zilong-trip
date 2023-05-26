@@ -21,3 +21,8 @@ body {
   background-color: #fff;
   overflow-y: auto;
 } */
+.icon_check {
+  width: 25px;
+  height: 25px;
+  background: url(../images//detail//icon_check.png) 50% 70% / 50% no-repeat;
+}

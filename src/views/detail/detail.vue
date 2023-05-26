@@ -8,11 +8,14 @@
     />
   </div>
   <div class="main" v-if="mainPart">
+    <!-- 轮播图组件 -->
     <detail-swiper :swiper-data="mainPart?.topModule.housePicture.housePics" />
+    <!-- 顶部信息 -->
     <detail-info :top-infos="mainPart?.topModule" />
-    <div class="facility">
-      <detail-section title="房屋设施" more-text="查看全部设施" />
-    </div>
+    <!-- 房屋设施 -->
+    <detail-facility
+      :houseFacility="mainPart.dynamicModule.facilityModule.houseFacility"
+    />
   </div>
 </template>
 
@@ -23,6 +26,7 @@ import { computed, ref } from "vue";
 import detailSwiper from "./cpns/detail-swiper_01.vue";
 import detailInfo from "./cpns/deatil-infos_02.vue";
 import detailSection from "@/components/detail-section/detail-section.vue";
+import detailFacility from "./cpns/detail-facility_03.vue";
 
 const route = useRoute();
 const router = useRouter();
