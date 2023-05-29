@@ -16,7 +16,7 @@
         <div class="indicator">
           <template v-for="(value, key) in swiperGroup" :key="key">
             <!-- 当前活跃的item背景样式改变 -->
-            <!-- key是字符串类型，所以不能用=== -->
+            <!-- key是字符串类型，所以不能用 === -->
             <span
               class="item"
               :class="{

@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-//接收detail.vue传来的title和moreText
+//接收detail.xxx.vue传来的title和moreText
 defineProps({
   title: {
     type: String,
@@ -24,7 +24,7 @@ defineProps({
   },
   moreText: {
     type: String,
-    default: "查看全部",
+    default: "",
   },
 });
 </script>
