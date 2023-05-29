@@ -99,26 +99,32 @@ const sectionEls = ref({});
 
 //
 const getSectionRef = (value) => {
+  //卸载时会再次执行，此时value为null，不执行下面代码
   if (!value) return;
   //$el获取对应DOM元素
   const name = value.$el.getAttribute("name"); // getAttribute获取name的属性值
+  // console.log(name);
   //将name属性值与对应DOM元素绑定？？？
   sectionEls.value[name] = value.$el;
 };
 
 //得到names数组，上面通过title绑定并传到tab-control组件
 const names = computed(() => {
-  return Object.keys(sectionEls.value); //返回属性名组成的数组（对应name）
+  return Object.keys(sectionEls.value); //返回属性名组成的数组
 });
 
 // 子组件传递过来的点击事件
 let isClick = false;
 let currentDistance = -1;
+
 const tabClick = (index) => {
   const key = Object.keys(sectionEls.value)[index];
+  // console.log(key);
   const el = sectionEls.value[key];
+  // console.log(el);
   // 元素距离顶部的距离
   let distance = el.offsetTop;
+  // console.log(distance);
   if (index !== 0) {
     // 因为ref绑定的是组件，.value只能拿到组件，而这里想要组件的根元素距离父元素的距离，
     // 所以再 .$el可以拿到组件的根元素
@@ -134,22 +140,23 @@ const tabClick = (index) => {
   });
 };
 
-// 5 监听页面滚动，滚动时匹配对应的tabControl索引
+//监听页面滚动，滚动时匹配对应的tabControl索引
 watch(scrollTop, (newValue) => {
   if (newValue === currentDistance) {
     isClick = false;
   }
   if (isClick) return;
 
-  // 1.获取所有的区域的 offsetTops
-  const els = Object.values(sectionEls.value);
-  const values = els.map((el) => el.offsetTop);
+  //获取所有区域的 offsetTop
+  const els = Object.values(sectionEls.value); //返回属性值组成的数组（el）
+  // console.log(els);
+  const values = els.map((el) => el.offsetTop); //得到el的offsetTop组成的数组
+  // console.log(values);
 
-  // 2.根据 newValue 去匹配想要的索引
+  //根据 newValue 匹配想要的 索引
   let index = values.length - 1;
   for (let i = 0; i < values.length; i++) {
-    const value = values[i];
-    if (value > newValue + 44) {
+    if (values[i] > newValue + 44) {
       index = i - 1;
       break;
     }
