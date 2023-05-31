@@ -1,6 +1,12 @@
 <template>
   <div class="app">
-    <router-view></router-view>
+    <!-- keep-alive home 组件-->
+    <router-view v-slot="props">
+      <!--  -->
+      <keep-alive include="home">
+        <component :is="props.Component"></component>
+      </keep-alive>
+    </router-view>
     <tab-bar v-if="!route.meta.hideTabber" />
     <loading />
   </div>

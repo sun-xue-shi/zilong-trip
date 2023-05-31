@@ -142,9 +142,12 @@ const tabClick = (index) => {
 
 //监听页面滚动，滚动时匹配对应的tabControl索引
 watch(scrollTop, (newValue) => {
+  //如果已经滚动到对应位置
   if (newValue === currentDistance) {
     isClick = false;
   }
+
+  //如果是手动点击，则不执行以下代码，避免tabControl挨个跳
   if (isClick) return;
 
   //获取所有区域的 offsetTop
