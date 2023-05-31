@@ -1,7 +1,6 @@
 <template>
-  <div class="home" ref="homeRef">
+  <div class="home" ref="homeRef" style="height: 100vh">
     <div class="banner">
-      <nav-bar></nav-bar>
       <img src="@/assets/images/home/banner.webp" alt="" />
     </div>
     <search-box />
@@ -13,13 +12,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "home",
-};
-</script>
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, onActivated, ref, watch } from "vue";
 import navBar from "./cpns/nav-bar.vue";
 import searchBox from "./cpns/search-box.vue";
 import useHomeStore from "@/stores/modules/home";
@@ -50,30 +44,36 @@ watch(isreachBottom, (newValue) => {
 const showSearchBar = computed(() => {
   return scrollTop.value >= 350;
 });
+
+//返回首页时，保留原来的位置,没用？？？？
+onActivated(() => {
+  homeRef.value?.scrollTo({
+    top: scrollTop.value,
+  });
+});
 </script>
 
 <style lang="less" scoped>
-// .home {
-//   height: 100vh;
-//   box-sizing: border-box;
-//   overflow-y: auto;
-//   padding-bottom: 60px;
-// }
-.banner {
-  img {
-    width: 100%;
-    border-top: 1px solid #000;
-  }
-}
+.home {
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-bottom: 50px;
 
-.search-bar {
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 0;
-  height: 45px;
-  padding: 16px 16px 10px;
-  background-color: #fff;
-  z-index: 1;
+  .banner {
+    img {
+      width: 100%;
+    }
+  }
+  .search-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    padding: 16px 16px 10px;
+    z-index: 1;
+    background-color: #fff;
+  }
 }
 </style>
