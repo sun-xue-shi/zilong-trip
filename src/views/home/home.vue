@@ -1,5 +1,6 @@
 <template>
-  <div class="home" ref="homeRef" style="height: 100vh">
+  <div class="home" ref="homeRef">
+    <nav-bar></nav-bar>
     <div class="banner">
       <img src="@/assets/images/home/banner.webp" alt="" />
     </div>
@@ -55,10 +56,10 @@ onActivated(() => {
 
 <style lang="less" scoped>
 .home {
-  height: 100vh;
-  overflow-y: auto;
-  box-sizing: border-box;
-  margin-bottom: 50px;
+  // height: 100vh;
+  // overflow-y: auto;
+  // box-sizing: border-box;
+  // margin-bottom: 50px;
 
   .banner {
     img {

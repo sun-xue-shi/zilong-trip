@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <!-- keep-alive home 组件-->
+    <!-- keep-alive home组件,类似做了缓存？-->
     <router-view v-slot="{ Component }">
       <keep-alive include="home">
         <component :is="Component" />
