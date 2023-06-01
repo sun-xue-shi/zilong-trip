@@ -1,5 +1,5 @@
 <template>
-  <div class="home" ref="homeRef">
+  <div class="home">
     <nav-bar></nav-bar>
     <div class="banner">
       <img src="@/assets/images/home/banner.webp" alt="" />
@@ -29,7 +29,7 @@ homeStore.getCategoryData();
 homeStore.getHouseListData();
 
 const homeRef = ref();
-const { isreachBottom, scrollTop } = useScroll(homeRef);
+const { isreachBottom, scrollTop } = useScroll();
 //监听isreachBottom,变化即到达底部,执行回调操作
 watch(isreachBottom, (newValue) => {
   if (newValue) {
